@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.robin.test.IbanValidator.getNormalizedText;
+import static org.robin.test.IbanValidator.getNormalizeIban;
 
 public class IbanValidatorTest {
 
@@ -159,6 +160,42 @@ public class IbanValidatorTest {
 
         // THEN
         assertEquals("", result);
+    }
+
+    @Test
+    void testGetNormalizeIban_shorterThan22Chars() {
+        // GIVEN
+        String iban = "DE893704";
+
+        // WHEN
+        String result = getNormalizeIban(iban);
+
+        // THEN
+        assertEquals("DE893704", result);
+    }
+
+    @Test
+    void testGetNormalizeIban_exactly22Chars() {
+        // GIVEN
+        String iban = "DE89370400440532013000";
+
+        // WHEN
+        String result = getNormalizeIban(iban);
+
+        // THEN
+        assertEquals("DE89370400440532013000", result);
+    }
+
+    @Test
+    void testGetNormalizeIban_longerThan22Chars() {
+        // GIVEN
+        String iban = "DE8937040044053201300012345678";
+
+        // WHEN
+        String result = getNormalizeIban(iban);
+
+        // THEN
+        assertEquals("DE89370400440532013000", result);
     }
 
 }
