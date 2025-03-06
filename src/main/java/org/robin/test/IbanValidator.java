@@ -8,8 +8,13 @@ import java.util.regex.Pattern;
  * Utility class for validating IBANs in text.
  */
 public class IbanValidator {
-
-    // Regular expression pattern to match IBANs in a text.
+    /*
+     Regular expression pattern to match IBANs in a text.
+     \\b asserts a word boundary, ensuring the IBAN is not part of a larger word.
+    [A-Z]{2} matches the 2-letter country code (e.g., "DE" for Germany).
+    \\d{2} matches the 2-digit check digits (e.g., "15").
+    [A-Z0-9]{1,30} matches the alphanumeric part of the IBAN, which can be between 1 and 30 characters long (including account number and bank code).
+    b asserts another word boundary at the end of the IBAN, ensuring it's a complete entity. */
     private static final Pattern IBAN_PATTERN = Pattern.compile("\\b[A-Z]{2}\\d{2}[A-Z0-9]{1,30}\\b");
 
     /**
