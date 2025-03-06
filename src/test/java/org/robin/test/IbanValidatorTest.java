@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.robin.test.IbanValidator.getNormalizedText;
 
 public class IbanValidatorTest {
 
@@ -122,6 +123,42 @@ public class IbanValidatorTest {
 
         // THEN
         assertTrue(result);
+    }
+
+    @Test
+    void testGetNormalizedText_removesWhitespaceAndUppercases() {
+        // GIVEN
+        String input = "  hello world ";
+
+        // WHEN
+        String result = getNormalizedText(input);
+
+        // THEN
+        assertEquals("HELLOWORLD", result);
+    }
+
+    @Test
+    void testGetNormalizedText_emptyString() {
+        // GIVEN
+        String input = "";
+
+        // WHEN
+        String result = getNormalizedText(input);
+
+        // THEN
+        assertEquals("", result);
+    }
+
+    @Test
+    void testGetNormalizedText_onlyWhitespace() {
+        // GIVEN
+        String input = "   \t\n ";
+
+        // WHEN
+        String result = getNormalizedText(input);
+
+        // THEN
+        assertEquals("", result);
     }
 
 }
