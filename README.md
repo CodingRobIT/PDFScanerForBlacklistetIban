@@ -1,4 +1,4 @@
-#API Documentation - PDF IBAN Scanner
+# API Documentation - PDF IBAN Scanner
 Use Insomnia or Postman to test the API.
 
 ### 1️⃣ Health Check (GET)
