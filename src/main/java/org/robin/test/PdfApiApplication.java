@@ -26,9 +26,17 @@ public class PdfApiApplication {
     localhost:8080/api/pdf/scan
  2. This endpoint requires a direct download link to the PDF file in a JSON body.
  3. The request body (Body > raw > JSON) should be formatted as follows:
+ 	this url contains a blacklisted IBAN and returns 400 Blacklisted IBAN found!
  {
     "url": "https://www.dropbox.com/scl/fi/96d3ipn2t57x62p8z9o8x/Testdata_Invoices.pdf?rlkey=ikqizs4ycjz186lj47aqdh2mc&e=1&st=x917lasv&dl=1"
  }
+
+ and this is a Dummy PDF without IBAN and returns 200 No blacklisted IBAN found.
+ {
+ "url": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+ }
+
+
  Max Size of the PDF is 50MB >>> application.properties to change PDF size
 
  The test PDF Contains this IBAN DE15 3006 0601 0505 7807 80 and this IBAN is in the Blacklist
