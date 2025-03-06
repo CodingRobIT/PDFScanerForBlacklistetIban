@@ -34,7 +34,7 @@ public class IbanValidator {
             // Extract the found IBAN.
             String iban = matcher.group();
             // Normalize the IBAN to match blacklisted entries.
-            String normalizedIban = normalizeIban(iban);
+            String normalizedIban = getNormalizeIban(iban);
 
             // Compare with each blacklisted IBAN.
             for (String blacklistedIban : blacklist) {
@@ -53,7 +53,7 @@ public class IbanValidator {
      * @param text The input text to normalize.
      * @return The normalized text without spaces and in uppercase.
      */
-    private static String getNormalizedText(String text) {
+    static String getNormalizedText(String text) {
         return text.replaceAll("\\s", "").toUpperCase();
     }
 
@@ -63,7 +63,7 @@ public class IbanValidator {
      * @param iban The IBAN to normalize.
      * @return A truncated IBAN if it's longer than 22 characters; otherwise, the original IBAN.
      */
-    private static String normalizeIban(String iban) {
+    static String getNormalizeIban(String iban) {
         if (iban.length() > 22) {
             return iban.substring(0, 22);
         }
