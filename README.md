@@ -18,15 +18,20 @@ The PDF must be a direct download link (not a web preview).
 Max PDF size: 50MB (configurable in application.properties).
 ### 3️⃣ Expected Behavior:
 If a blacklisted IBAN is found:
-Response: 400 Bad Request
-Message: "Blacklisted IBAN found!"
+- Response: 400 Bad Request
+- Message: "Blacklisted IBAN found!"
+  
 If no blacklisted IBAN is found:
-Response: 200 OK
-Message: "No blacklisted IBAN found."
+- Response: 200 OK
+- Message: "No blacklisted IBAN found."
+  
 ### 4️⃣ Testing with Example PDF:
 Example URL: "https://www.dropbox.com/scl/fi/96d3ipn2t57x62p8z9o8x/Testdata_Invoices.pdf?rlkey=ikqizs4ycjz186lj47aqdh2mc&e=1&st=x917lasv&dl=1"
 This test PDF contains the IBAN: DE15 3006 0601 0505 7807 80 (which is blacklisted).
-To receive a 200 OK response, remove or modify this IBAN in BlacklistService.
+Use this link as described in point 2️⃣ to Resive the Stause Code 400 because a blacklistet IBAN is in there.
+
+To receive a 200 OK response, remove or modify this IBAN in BlacklistService or use this link
+https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf
 ### 5️⃣ Important: How to Use Dropbox Links as Direct Downloads
 Dropbox links by default open in the browser instead of downloading.
 
