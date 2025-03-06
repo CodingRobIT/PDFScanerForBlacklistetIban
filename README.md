@@ -47,3 +47,9 @@ To make the link a direct download, replace dl=0 with dl=1 in the URL:
     java -jar target/pdf-iban-scanner.jar
     ```
 - The application will start on `http://localhost:8080`.
+
+
+ 
+ More Instructions are also in the `PdfApiApplication.java`
+ 
+ https://github.com/CodingRobIT/PDFScanerForBlacklistetIban/blob/main/src/main/java/org/robin/test/PdfApiApplication.java
