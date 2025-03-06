@@ -15,11 +15,11 @@ public class PdfScanService {
         // Extract the text from the PDF
         String text = PdfTextExtractor.extractTextFromPdf(pdfFile);
 
-        // Get the blacklist  Todo: optimize that.
-        List<String> blacklistedIbans = blacklistService.getBlacklistedIbans();
+        // Get the blacklist  Todo: optimize that another endpoint with Blacklist.txt or DB with Blacklist.
+        List<String> blacklistedIban = blacklistService.getBlacklistedIbans();
 
         // Check if an IBAN is on the blacklist
-        if (IbanValidator.containsBlacklistedIban(text, blacklistedIbans)) {
+        if (IbanValidator.containsBlacklistedIban(text, blacklistedIban)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Blacklisted IBAN found!");
         }
 
