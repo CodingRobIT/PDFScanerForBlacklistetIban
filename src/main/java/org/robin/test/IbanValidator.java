@@ -26,7 +26,7 @@ public class IbanValidator {
      */
     public static boolean containsBlacklistedIban(String text, List<String> blacklist) {
         // Normalize text: remove spaces and convert to uppercase for consistent comparison.
-        String normalizedText = text.replaceAll("\\s", "").toUpperCase();
+        String normalizedText = getNormalizedText(text);
 
         // Search for IBAN patterns in the text.
         Matcher matcher = IBAN_PATTERN.matcher(normalizedText);
@@ -38,13 +38,23 @@ public class IbanValidator {
 
             // Compare with each blacklisted IBAN.
             for (String blacklistedIban : blacklist) {
-                String normalizedBlacklistedIban = blacklistedIban.replaceAll("\\s", "").toUpperCase();
+                String normalizedBlacklistedIban = getNormalizedText(blacklistedIban);
                 if (normalizedIban.equals(normalizedBlacklistedIban)) {
                     return true; // Return true if a match is found.
                 }
             }
         }
         return false; // No blacklisted IBAN found.
+    }
+
+    /**
+     * Normalizes the given text by removing all whitespace characters and converting it to uppercase.
+     *
+     * @param text The input text to normalize.
+     * @return The normalized text without spaces and in uppercase.
+     */
+    private static String getNormalizedText(String text) {
+        return text.replaceAll("\\s", "").toUpperCase();
     }
 
     /**
